@@ -9,10 +9,11 @@ extends CharacterBody2D
 
 # Set initial speed to 0 to have the game be startable by space
 var speed = 0;
-var velocity = 300;
 
 # Pick random starting direction
 func _ready():
+  velocity = Vector2(500, 0)
+  pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
