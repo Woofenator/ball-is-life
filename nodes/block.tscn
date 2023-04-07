@@ -1,8 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqbjp5hgrxqnw"]
+[gd_scene load_steps=3 format=3 uid="uid://bqbjp5hgrxqnw"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qy2jd"]
+[ext_resource type="Texture2D" uid="uid://tfukvex2u6xo" path="res://block.png" id="1_308at"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tt4ds"]
+radius = 7.0
+height = 32.0
 
 [node name="block" type="StaticBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_qy2jd")
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_tt4ds")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_308at")
