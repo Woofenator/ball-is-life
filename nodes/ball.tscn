@@ -4,9 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://c5ui0fu673rfy" path="res://ball.png" id="1_gpi5o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vhbs4"]
-radius = 8.0
+radius = 15.0
 
 [node name="Ball" type="CharacterBody2D"]
+scale = Vector2(0.75, 0.75)
 script = ExtResource("1_esgwi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

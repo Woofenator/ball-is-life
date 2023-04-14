@@ -1,24 +1,304 @@
-[gd_scene load_steps=4 format=3 uid="uid://dsrepvxd3f8b8"]
+[gd_scene load_steps=7 format=3 uid="uid://dsrepvxd3f8b8"]
 
 [ext_resource type="PackedScene" uid="uid://ckktelxbkju0q" path="res://nodes/ball.tscn" id="1_fy4jd"]
 [ext_resource type="PackedScene" uid="uid://bqbjp5hgrxqnw" path="res://nodes/block.tscn" id="2_qx24d"]
 [ext_resource type="PackedScene" uid="uid://bhucuxgwdr1hu" path="res://nodes/paddle.tscn" id="3_80bwl"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_byh45"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ogp3n"]
+size = Vector2(580, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_73ghw"]
+size = Vector2(20, 1000)
+
 [node name="main" type="Node2D"]
 
-[node name="Ball" parent="." instance=ExtResource("1_fy4jd")]
-motion_mode = 1
-intialSpeed = 250
-
-[node name="block" parent="." instance=ExtResource("2_qx24d")]
-position = Vector2(171, -17)
-
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
 
-[node name="block2" parent="." instance=ExtResource("2_qx24d")]
-position = Vector2(-207, 8)
-rotation = 0.53058
+[node name="Ball" parent="." instance=ExtResource("1_fy4jd")]
+position = Vector2(0, 200)
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("3_80bwl")]
-position = Vector2(0, 141)
+[node name="Paddle" parent="." instance=ExtResource("3_80bwl")]
+position = Vector2(0, 400)
+scale = Vector2(1.5, 1.5)
+
+[node name="Boundary-top" type="StaticBody2D" parent="."]
+position = Vector2(0, -480)
+physics_material_override = SubResource("PhysicsMaterial_byh45")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary-top"]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_ogp3n")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Boundary-left" type="StaticBody2D" parent="."]
+position = Vector2(-270, 0)
+physics_material_override = SubResource("PhysicsMaterial_byh45")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary-left"]
+position = Vector2(-10, 0)
+shape = SubResource("RectangleShape2D_73ghw")
+
+[node name="Boundary-right" type="StaticBody2D" parent="."]
+position = Vector2(270, 0)
+physics_material_override = SubResource("PhysicsMaterial_byh45")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary-right"]
+position = Vector2(10, 0)
+shape = SubResource("RectangleShape2D_73ghw")
+
+[node name="Blocks" type="Node2D" parent="."]
+editor_description = "A node to hold block nodes for easier development"
+position = Vector2(0, -80)
+
+[node name="Row 0" type="Node2D" parent="Blocks"]
+position = Vector2(0, 20)
+
+[node name="block6" parent="Blocks/Row 0" instance=ExtResource("2_qx24d")]
+position = Vector2(-192, 0)
+
+[node name="block3" parent="Blocks/Row 0" instance=ExtResource("2_qx24d")]
+position = Vector2(192, 0)
+
+[node name="Row -5" type="Node2D" parent="Blocks"]
+position = Vector2(0, 120)
+
+[node name="block" parent="Blocks/Row -5" instance=ExtResource("2_qx24d")]
+
+[node name="block6" parent="Blocks/Row -5" instance=ExtResource("2_qx24d")]
+position = Vector2(-64, 0)
+
+[node name="block3" parent="Blocks/Row -5" instance=ExtResource("2_qx24d")]
+position = Vector2(64, 0)
+
+[node name="row -3" type="Node2D" parent="Blocks"]
+position = Vector2(0, 80)
+
+[node name="block5" parent="Blocks/row -3" instance=ExtResource("2_qx24d")]
+position = Vector2(-127, 0)
+
+[node name="block7" parent="Blocks/row -3" instance=ExtResource("2_qx24d")]
+
+[node name="block2" parent="Blocks/row -3" instance=ExtResource("2_qx24d")]
+position = Vector2(129, 0)
+
+[node name="row -2" type="Node2D" parent="Blocks"]
+position = Vector2(0, 60)
+
+[node name="block5" parent="Blocks/row -2" instance=ExtResource("2_qx24d")]
+position = Vector2(-64, 0)
+
+[node name="block2" parent="Blocks/row -2" instance=ExtResource("2_qx24d")]
+position = Vector2(64, 0)
+
+[node name="Row -1" type="Node2D" parent="Blocks"]
+position = Vector2(0, 40)
+
+[node name="block" parent="Blocks/Row -1" instance=ExtResource("2_qx24d")]
+
+[node name="block6" parent="Blocks/Row -1" instance=ExtResource("2_qx24d")]
+position = Vector2(-128, 0)
+
+[node name="block3" parent="Blocks/Row -1" instance=ExtResource("2_qx24d")]
+position = Vector2(128, 0)
+
+[node name="Row 1" type="Node2D" parent="Blocks"]
+
+[node name="block" parent="Blocks/Row 1" instance=ExtResource("2_qx24d")]
+
+[node name="block5" parent="Blocks/Row 1" instance=ExtResource("2_qx24d")]
+position = Vector2(-64, 0)
+
+[node name="block6" parent="Blocks/Row 1" instance=ExtResource("2_qx24d")]
+position = Vector2(-128, 0)
+
+[node name="block7" parent="Blocks/Row 1" instance=ExtResource("2_qx24d")]
+position = Vector2(-192, 0)
+
+[node name="block2" parent="Blocks/Row 1" instance=ExtResource("2_qx24d")]
+position = Vector2(64, 0)
+
+[node name="block3" parent="Blocks/Row 1" instance=ExtResource("2_qx24d")]
+position = Vector2(128, 0)
+
+[node name="block4" parent="Blocks/Row 1" instance=ExtResource("2_qx24d")]
+position = Vector2(192, 0)
+
+[node name="Row 2" type="Node2D" parent="Blocks"]
+position = Vector2(0, -20)
+
+[node name="block" parent="Blocks/Row 2" instance=ExtResource("2_qx24d")]
+position = Vector2(32, 0)
+
+[node name="block4" parent="Blocks/Row 2" instance=ExtResource("2_qx24d")]
+position = Vector2(32, 0)
+
+[node name="block5" parent="Blocks/Row 2" instance=ExtResource("2_qx24d")]
+position = Vector2(96, 0)
+
+[node name="block6" parent="Blocks/Row 2" instance=ExtResource("2_qx24d")]
+position = Vector2(160, 0)
+
+[node name="block2" parent="Blocks/Row 2" instance=ExtResource("2_qx24d")]
+position = Vector2(-32, 0)
+
+[node name="block3" parent="Blocks/Row 2" instance=ExtResource("2_qx24d")]
+position = Vector2(-96, 0)
+
+[node name="block8" parent="Blocks/Row 2" instance=ExtResource("2_qx24d")]
+position = Vector2(-160, 0)
+
+[node name="Row 3" type="Node2D" parent="Blocks"]
+position = Vector2(0, -40)
+
+[node name="block" parent="Blocks/Row 3" instance=ExtResource("2_qx24d")]
+
+[node name="block6" parent="Blocks/Row 3" instance=ExtResource("2_qx24d")]
+position = Vector2(-128, 0)
+
+[node name="block3" parent="Blocks/Row 3" instance=ExtResource("2_qx24d")]
+position = Vector2(128, 0)
+
+[node name="Row 4" type="Node2D" parent="Blocks"]
+position = Vector2(0, -60)
+
+[node name="block" parent="Blocks/Row 4" instance=ExtResource("2_qx24d")]
+position = Vector2(32, 0)
+
+[node name="block4" parent="Blocks/Row 4" instance=ExtResource("2_qx24d")]
+position = Vector2(160, 0)
+
+[node name="block2" parent="Blocks/Row 4" instance=ExtResource("2_qx24d")]
+position = Vector2(-32, 0)
+
+[node name="block6" parent="Blocks/Row 4" instance=ExtResource("2_qx24d")]
+position = Vector2(-160, 0)
+
+[node name="Row 5" type="Node2D" parent="Blocks"]
+position = Vector2(0, -80)
+
+[node name="block2" parent="Blocks/Row 5" instance=ExtResource("2_qx24d")]
+position = Vector2(64, 0)
+
+[node name="block5" parent="Blocks/Row 5" instance=ExtResource("2_qx24d")]
+position = Vector2(128, 0)
+
+[node name="block3" parent="Blocks/Row 5" instance=ExtResource("2_qx24d")]
+position = Vector2(-64, 0)
+
+[node name="block4" parent="Blocks/Row 5" instance=ExtResource("2_qx24d")]
+position = Vector2(-128, 0)
+
+[node name="Row 6" type="Node2D" parent="Blocks"]
+position = Vector2(0, -100)
+
+[node name="block5" parent="Blocks/Row 6" instance=ExtResource("2_qx24d")]
+position = Vector2(96, 0)
+
+[node name="block6" parent="Blocks/Row 6" instance=ExtResource("2_qx24d")]
+position = Vector2(160, 0)
+
+[node name="block3" parent="Blocks/Row 6" instance=ExtResource("2_qx24d")]
+position = Vector2(-96, 0)
+
+[node name="block4" parent="Blocks/Row 6" instance=ExtResource("2_qx24d")]
+position = Vector2(-160, 0)
+
+[node name="Row 7" type="Node2D" parent="Blocks"]
+position = Vector2(0, -120)
+
+[node name="block" parent="Blocks/Row 7" instance=ExtResource("2_qx24d")]
+position = Vector2(-192, 0)
+
+[node name="block7" parent="Blocks/Row 7" instance=ExtResource("2_qx24d")]
+position = Vector2(128, 0)
+
+[node name="block8" parent="Blocks/Row 7" instance=ExtResource("2_qx24d")]
+position = Vector2(192, 0)
+
+[node name="block5" parent="Blocks/Row 7" instance=ExtResource("2_qx24d")]
+position = Vector2(-128, 0)
+
+[node name="Row 9" type="Node2D" parent="Blocks"]
+position = Vector2(0, -160)
+
+[node name="block" parent="Blocks/Row 9" instance=ExtResource("2_qx24d")]
+
+[node name="block3" parent="Blocks/Row 9" instance=ExtResource("2_qx24d")]
+position = Vector2(64, 0)
+
+[node name="block4" parent="Blocks/Row 9" instance=ExtResource("2_qx24d")]
+position = Vector2(128, 0)
+
+[node name="block2" parent="Blocks/Row 9" instance=ExtResource("2_qx24d")]
+position = Vector2(-64, 0)
+
+[node name="block5" parent="Blocks/Row 9" instance=ExtResource("2_qx24d")]
+position = Vector2(-128, 0)
+
+[node name="Row 10" type="Node2D" parent="Blocks"]
+position = Vector2(0, -180)
+
+[node name="block" parent="Blocks/Row 10" instance=ExtResource("2_qx24d")]
+position = Vector2(-32, 0)
+
+[node name="block3" parent="Blocks/Row 10" instance=ExtResource("2_qx24d")]
+position = Vector2(-96, 0)
+
+[node name="block2" parent="Blocks/Row 10" instance=ExtResource("2_qx24d")]
+position = Vector2(32, 0)
+
+[node name="block4" parent="Blocks/Row 10" instance=ExtResource("2_qx24d")]
+position = Vector2(96, 0)
+
+[node name="Row 11" type="Node2D" parent="Blocks"]
+position = Vector2(0, -200)
+
+[node name="block" parent="Blocks/Row 11" instance=ExtResource("2_qx24d")]
+position = Vector2(32, 0)
+
+[node name="block4" parent="Blocks/Row 11" instance=ExtResource("2_qx24d")]
+position = Vector2(96, 0)
+
+[node name="block2" parent="Blocks/Row 11" instance=ExtResource("2_qx24d")]
+position = Vector2(-32, 0)
+
+[node name="block3" parent="Blocks/Row 11" instance=ExtResource("2_qx24d")]
+position = Vector2(-96, 0)
+
+[node name="Row 12" type="Node2D" parent="Blocks"]
+position = Vector2(0, -220)
+
+[node name="block" parent="Blocks/Row 12" instance=ExtResource("2_qx24d")]
+position = Vector2(32, 0)
+
+[node name="block2" parent="Blocks/Row 12" instance=ExtResource("2_qx24d")]
+position = Vector2(-32, 0)
+
+[node name="Row 13" type="Node2D" parent="Blocks"]
+position = Vector2(0, -240)
+
+[node name="block" parent="Blocks/Row 13" instance=ExtResource("2_qx24d")]
+position = Vector2(-32, 0)
+
+[node name="block2" parent="Blocks/Row 13" instance=ExtResource("2_qx24d")]
+position = Vector2(32, 0)
+
+[node name="Row 14" type="Node2D" parent="Blocks"]
+position = Vector2(0, -260)
+
+[node name="block" parent="Blocks/Row 14" instance=ExtResource("2_qx24d")]
+position = Vector2(-32, 0)
+
+[node name="block2" parent="Blocks/Row 14" instance=ExtResource("2_qx24d")]
+position = Vector2(32, 0)
+
+[node name="Row 15" type="Node2D" parent="Blocks"]
+position = Vector2(0, -280)
+
+[node name="block" parent="Blocks/Row 15" instance=ExtResource("2_qx24d")]
+position = Vector2(-32, 0)
+
+[node name="block2" parent="Blocks/Row 15" instance=ExtResource("2_qx24d")]
+position = Vector2(32, 0)
