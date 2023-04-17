@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://bqbjp5hgrxqnw"]
+[gd_scene load_steps=12 format=3 uid="uid://bqbjp5hgrxqnw"]
 
+[ext_resource type="Script" path="res://scripts/block.gd" id="1_jw48p"]
 [ext_resource type="Texture2D" uid="uid://66mas5ynh6aw" path="res://block-sheet.png" id="1_kcs3h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t5xta"]
@@ -89,11 +90,11 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tt4ds"]
-radius = 9.0
-height = 64.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5p68b"]
+size = Vector2(18, 60)
 
 [node name="block" type="StaticBody2D"]
+script = ExtResource("1_jw48p")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_k4xw0")
@@ -101,5 +102,8 @@ autoplay = "default"
 frame_progress = 0.869083
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.13687e-13)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_tt4ds")
+shape = SubResource("RectangleShape2D_5p68b")
+
+[connection signal="collided" from="." to="." method="_on_collided"]

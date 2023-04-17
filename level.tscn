@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dsrepvxd3f8b8"]
+[gd_scene load_steps=10 format=3 uid="uid://dsrepvxd3f8b8"]
 
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_6fh0c"]
 [ext_resource type="PackedScene" uid="uid://ckktelxbkju0q" path="res://nodes/ball.tscn" id="1_fy4jd"]
 [ext_resource type="PackedScene" uid="uid://bqbjp5hgrxqnw" path="res://nodes/block.tscn" id="2_qx24d"]
 [ext_resource type="PackedScene" uid="uid://bhucuxgwdr1hu" path="res://nodes/paddle.tscn" id="3_80bwl"]
+[ext_resource type="Script" path="res://scripts/bounds.gd" id="5_hqt6d"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_byh45"]
 
@@ -12,16 +14,22 @@ size = Vector2(580, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_73ghw"]
 size = Vector2(20, 1000)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5jvc7"]
+size = Vector2(537, 102)
+
 [node name="main" type="Node2D"]
+script = ExtResource("1_6fh0c")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Ball" parent="." instance=ExtResource("1_fy4jd")]
-position = Vector2(0, 200)
+position = Vector2(0, 300)
+rotation = 0.785398
 
 [node name="Paddle" parent="." instance=ExtResource("3_80bwl")]
 position = Vector2(0, 400)
 scale = Vector2(1.5, 1.5)
+maxSpeed = 500
 
 [node name="Boundary-top" type="StaticBody2D" parent="."]
 position = Vector2(0, -480)
@@ -127,9 +135,6 @@ position = Vector2(192, 0)
 
 [node name="Row 2" type="Node2D" parent="Blocks"]
 position = Vector2(0, -20)
-
-[node name="block" parent="Blocks/Row 2" instance=ExtResource("2_qx24d")]
-position = Vector2(32, 0)
 
 [node name="block4" parent="Blocks/Row 2" instance=ExtResource("2_qx24d")]
 position = Vector2(32, 0)
@@ -302,3 +307,14 @@ position = Vector2(-32, 0)
 
 [node name="block2" parent="Blocks/Row 15" instance=ExtResource("2_qx24d")]
 position = Vector2(32, 0)
+
+[node name="OutOfBounds" type="Area2D" parent="."]
+position = Vector2(0, 500)
+script = ExtResource("5_hqt6d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OutOfBounds"]
+position = Vector2(-0.5, 41)
+shape = SubResource("RectangleShape2D_5jvc7")
+
+[connection signal="body_entered" from="OutOfBounds" to="OutOfBounds" method="_on_body_entered"]
+[connection signal="game_over" from="OutOfBounds" to="." method="_on_out_of_bounds_game_over"]

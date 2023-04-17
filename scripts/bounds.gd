@@ -1,6 +1,6 @@
-extends Node
+extends Area2D
 
-signal start_game
+signal game_over
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,6 +12,5 @@ func _process(delta):
   pass
 
 
-func _on_out_of_bounds_game_over():
-  print('Game Over :(')
-  pass # Replace with function body.
+func _on_body_entered(body:Node2D):
+  game_over.emit()

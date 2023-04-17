@@ -1,6 +1,6 @@
-extends Node
+extends StaticBody2D
 
-signal start_game
+signal collided
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,6 +12,6 @@ func _process(delta):
   pass
 
 
-func _on_out_of_bounds_game_over():
-  print('Game Over :(')
+func _on_collided():
+  get_parent().remove_child(self)
   pass # Replace with function body.
