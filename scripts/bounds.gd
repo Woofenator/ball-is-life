@@ -7,10 +7,9 @@ func _ready():
   pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-  pass
-
-
-func _on_body_entered(body:Node2D):
+func _on_body_entered(node):
   game_over.emit()
+
+
+func _on_game_over():
+  get_node("GameOver").play()

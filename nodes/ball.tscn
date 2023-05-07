@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckktelxbkju0q"]
+[gd_scene load_steps=5 format=3 uid="uid://ckktelxbkju0q"]
 
 [ext_resource type="Script" path="res://scripts/ball.gd" id="1_esgwi"]
 [ext_resource type="Texture2D" uid="uid://c5ui0fu673rfy" path="res://ball.png" id="1_gpi5o"]
+[ext_resource type="AudioStream" uid="uid://d2m6dttylhvdu" path="res://sounds/wall_bounce.mp3" id="3_aqdua"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vhbs4"]
 radius = 15.0
@@ -16,3 +17,6 @@ texture = ExtResource("1_gpi5o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_vhbs4")
+
+[node name="WallHit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_aqdua")

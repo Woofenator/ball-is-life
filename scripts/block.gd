@@ -6,12 +6,14 @@ signal collided
 func _ready():
   pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
   pass
 
 
 func _on_collided():
-  get_parent().remove_child(self)
+  remove_child(get_node('Sprite'))
+  remove_child(get_node('Collision'))
+  get_node('Hit').play()
   pass # Replace with function body.
+

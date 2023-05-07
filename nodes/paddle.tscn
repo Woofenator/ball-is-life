@@ -78,11 +78,11 @@ animations = [{
 motion_mode = 1
 script = ExtResource("1_qr52k")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7us5x")
 autoplay = "default"
 frame_progress = 0.64296
 offset = Vector2(0, 23)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="Collision" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0, 6, -56, 6, -53, 1, -49, -2, -41, -4, -17, -7, 0, -7, 17, -7, 41, -4, 49, -2, 53, 1, 56, 6)
